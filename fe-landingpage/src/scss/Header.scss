@@ -1,0 +1,109 @@
+.hd_top {
+    .con {
+
+
+        .hd__logo {
+            .custom-logo-link {}
+        }
+
+        .hd__list {
+            justify-content: flex-end;
+            display: flex;
+
+            .hd__notification {
+                padding: 0 1.5rem;
+
+                .notification__btn {
+                    position: relative;
+
+                    &:active {
+                        opacity: 1;
+                        pointer-events: auto;
+                    }
+
+                    .notification__btn__child {
+                        position: relative;
+
+                        img {
+                            width: 16px;
+                            height: auto;
+                        }
+
+                        .cart__num {
+                            position: absolute;
+                            bottom: 0;
+                            right: 0;
+                            transform: translate(50%, 50%);
+                            font-size: 1.2rem;
+                            color: #fff;
+                            font-weight: 300;
+                            width: max-content;
+
+                            &::after {
+                                content: '';
+                                display: block;
+                                border-radius: 999px;
+                                width: 16px;
+                                height: 16px;
+                                background-color: #47474c;
+                                position: absolute;
+                                left: 50%;
+                                top: 50%;
+                                transform: translate(-50%, -50%);
+                                z-index: -1;
+                                transition: 0.2s;
+                            }
+                        }
+                    }
+
+                    .notification__list {
+                        opacity: 1;
+                        pointer-events: auto;
+                        position: absolute;
+                        top: calc(100%);
+                        transform: translate(-72%, 25%);
+                        max-width: 100vw;
+                        font-size: 1.2rem;
+                        width: 260px;
+                        left: 50%;
+
+                        li {
+                            list-style-type: none;
+
+                            a {
+                                padding: 10px 20px;
+                                width: 100%;
+                                display: flex;
+                                justify-content: flex-start;
+                                align-items: center;
+                                text-decoration: none;
+                                color: inherit;
+                                font-size: 12px;
+                            }
+                        }
+
+                    }
+                }
+
+            }
+
+            .hd__wish {
+                .wish__btn {
+                    display: block;
+                    user-select: none;
+                    text-decoration: none;
+                    list-style: none;
+                    font-size: 14px;
+                    color: #000000;
+                }
+
+                a {
+                    color: inherit;
+                }
+            }
+        }
+
+    }
+
+
+}
