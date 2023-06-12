@@ -405,41 +405,40 @@
             .mg-t {
                 margin-top: auto;
 
-                a {
+                .btn-pri-whi {
+                    background-color: #fff;
+                    border: none;
+                    line-height: 1.5;
                     text-decoration: none;
                     color: inherit;
 
-                    &.btn-pri-whi {
-                        background-color: #fff;
-                        border: none;
-                        line-height: 1.5;
-
-                        &::after {
-                            width: 0;
-                            top: 0;
-                            height: 100%;
-                            left: 50%;
-                            transform: translateX(-50%);
-                            background-color: #000;
-                        }
-
-                        &:hover {
-                            color: #fff;
-                            border: none;
-                            box-shadow: 1rem 1rem 3rem rgba(0, 0, 0, 0.4);
-                        }
-
-                        &.ban__btn {
-                            display: block;
-                            margin: 0 auto;
-                            width: 15rem;
-                            padding: 5px;
-                        }
-
-                        &.hov-df {}
-
+                    &.ban__btn {
+                        display: block;
+                        margin: 0 auto;
+                        width: 15rem;
+                        padding: 5px;
                     }
+
+                    &::after {
+                        content: "";
+                        width: 0;
+                        top: 0;
+                        height: 100%;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        background-color: #000;
+                    }
+
+                    &:hover {
+                        color: #fff;
+                        border: none;
+                        box-shadow: 1rem 1rem 3rem rgba(0, 0, 0, 0.4);
+                    }
+
+                    // &.hov-df {}
+
                 }
+
             }
         }
     }

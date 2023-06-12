@@ -1,0 +1,220 @@
+@mixin form__link {
+    color: #009eff;
+    font-family: "SVN-Futura light", sans-serif;
+    display: inline-block;
+    transition: 0.2s linear;
+
+
+}
+
+@mixin a {
+    text-decoration: none;
+    color: inherit;
+}
+
+@mixin form__inp {
+    width: 100%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #c0c0c0;
+    padding: 1rem 0;
+    font-family: "SVN-Futura light", sans-serif;
+    margin-bottom: 2rem;
+    transition: 0.2s linear;
+}
+
+@mixin rs-form {
+    webkit-appearance: none;
+    appearance: none;
+}
+
+@mixin fl-con {
+    display: flex;
+    padding: 0;
+}
+
+@mixin laptop {
+    @media screen and (max-width: 1000px) {
+
+        .fl-wrap,
+        .fl-ct,
+        .fl-con,
+        .fl-col {
+            display: flex;
+            padding: 0;
+        }
+    }
+}
+
+@mixin btn-pri {
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    position: relative;
+    background-color: #47474c;
+    z-index: 1;
+    line-height: 1.5;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #47474c;
+}
+
+.main {
+    .sec-80 {
+        padding: 8rem 0;
+
+        .conn {
+            max-width: 39rem;
+
+            &.form__wrap {
+                width: 100%;
+                padding: 0 1.5rem;
+                position: relative;
+                margin: 0 auto;
+
+                .sec-title {
+                    font-size: 1.6rem;
+                    font-family: "SVN-Futura Medium", sans-serif;
+                    text-transform: uppercase;
+                    text-align: center;
+                    margin-bottom: 5.2rem;
+
+                    &.form__title {
+                        margin-bottom: 3.2rem;
+                    }
+                }
+
+                .form {
+                    line-height: 21px;
+
+                    .form__txt {
+                        margin-bottom: 2.2rem;
+                        text-align: initial;
+
+                        .form__link {
+                            @include a;
+                            @include form__link;
+                        }
+                    }
+
+                    .rs-form {
+                        @include rs-form;
+
+                        &.form__inp {
+                            @include form__inp;
+
+                            &:focus {
+                                border-bottom: 1px solid #000;
+                                outline: none;
+                            }
+                        }
+                    }
+
+                    .form__check {
+                        margin-bottom: 4.5rem;
+
+                        label {
+                            @include fl-con;
+                            position: relative;
+                            margin-bottom: 2rem;
+
+                            // .dp-none {
+                            //     display: none;
+                            // }
+
+                            .form__cbox {
+                                width: 16px;
+                                height: 16px;
+                                border: 1px solid #707070;
+                                position: relative;
+                                margin: 2px 10px 2px 0;
+                                cursor: pointer;
+
+                                &::after {
+                                    content: "";
+                                    display: block;
+                                    width: 100%;
+                                    height: 100%;
+                                    background-color: #7f7f7f;
+                                    position: absolute;
+                                    top: 50%;
+                                    left: 50%;
+                                    transform: translate(-50%, -50%) scale(0);
+                                }
+                            }
+
+                            .form__ctxt {
+                                width: calc(27% - 26px);
+                                font-family: "VN-Futura light", sans-serif;
+                                color: #47474c;
+                                cursor: pointer;
+
+
+                            }
+                        }
+                    }
+
+                    .fl-wrap {
+                        @include fl-con;
+                        flex-wrap: wrap;
+
+                        &.aln-ct {
+                            align-items: center;
+
+                            &.form__bot {
+                                margin-top: 4.5rem;
+
+                                .form__link {
+                                    @include a;
+                                    @include form__link;
+                                    margin: 1rem auto 1rem 0;
+                                }
+
+                                .rs-form {
+                                    @include rs-form;
+
+                                    &.btn-pri {
+                                        @include btn-pri;
+
+                                        &::after {
+                                            content: "";
+                                            display: block;
+                                            width: 100%;
+                                            height: 0;
+                                            background-color: #000;
+                                            position: absolute;
+                                            left: 0;
+                                            top: 50%;
+                                            transform: translateY(-50%);
+                                            transition: 0.5s ease;
+                                            z-index: -1;
+                                        }
+
+                                        &:hover {
+                                            box-shadow: 1rem 1rem 3rem rgba(0, 0, 0, 0.4);
+                                            border: 1px solid #000;
+                                        }
+                                    }
+
+                                    &.c-whi {
+                                        color: #fff;
+                                    }
+
+                                    &.form__submit-small {
+                                        display: block;
+                                        padding: 5px;
+                                        width: 14rem;
+                                    }
+                                }
+                            }
+
+                        }
+
+                    }
+
+                }
+            }
+        }
+    }
+}
