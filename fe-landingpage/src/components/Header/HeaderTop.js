@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 // import {logo} from 'https://levents.asia/wp-content/uploads/2021/10/logo.png'
 import '../../scss/Header.scss'
 
-
+import HomeScreen from '../../screens/HomeScreen';
 const HeaderTop = () => {
     const [open, setOpen] = useState(false);
     const [OpenFavorite, setOpenFavorite] = useState(false);
@@ -12,6 +12,7 @@ const HeaderTop = () => {
     const handleShow = () => setOpen(true);
 
     return (
+
         <div>
             <div className='hd_top' style={{ marginTop: 20 }}>
                 <div className='con fl-ct row'>
@@ -92,6 +93,7 @@ const HeaderTop = () => {
 
             </div>
         </div>
+
     )
 }
 

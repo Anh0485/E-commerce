@@ -4,20 +4,19 @@ import '../scss/Header.scss'
 import FavoriteProduct from './Modal/FavoriteProduct'
 import HeaderTop from './Header/HeaderTop';
 import HeaderBot from './Header/HeaderBot';
-import Banner from './Banner';
+import { Route } from 'react-router-dom';
 
 const Header = () => {
-   
+
     // useEffect(() => {
     //     alert('reload!')
     // }, [])
 
     return (
-        <React.Fragment>
-            <HeaderTop/>
-            <HeaderBot/>
-            <Banner/>
-        </React.Fragment>
+        <div>
+            <HeaderTop />
+            <HeaderBot />
+        </div>
 
     )
 }

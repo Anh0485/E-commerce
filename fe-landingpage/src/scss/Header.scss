@@ -1,6 +1,7 @@
 .hd_top {
     border-bottom: 1px solid rgba(112, 112, 112, 0.3);
     padding-bottom: 1rem;
+    text-align: center;
 
     .con {
 
@@ -366,80 +367,80 @@
     }
 }
 
-.main {
-    .ban__img {
-        width: 100%;
+// .main {
+//     .ban__img {
+//         width: 100%;
 
-        .rto-box {
+//         .rto-box {
 
-            // padding-top: 42.5%;
-            img {
-                position: absolute;
-                right: -1px;
-                // top: 50%;
-                // left: 50%;
-                // transform: translate(-50%, -50%);
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                z-index: 1;
-            }
+//             // padding-top: 42.5%;
+//             img {
+//                 position: absolute;
+//                 right: -1px;
+//                 // top: 50%;
+//                 // left: 50%;
+//                 // transform: translate(-50%, -50%);
+//                 width: 100%;
+//                 height: 100%;
+//                 object-fit: cover;
+//                 z-index: 1;
+//             }
 
-            .ban__des {}
-        }
-    }
+//             .ban__des {}
+//         }
+//     }
 
-    .ban__content {
-        position: absolute;
-        z-index: 2;
-        top: 384px;
-        right: 0;
-        left: 0;
-        bottom: 0;
-        padding: 4rem 0;
+//     .ban__content {
+//         position: absolute;
+//         z-index: 2;
+//         top: 384px;
+//         right: 0;
+//         left: 0;
+//         bottom: 0;
+//         padding: 4rem 0;
 
-        &.fl-col {
-            display: flex;
-            flex-direction: column;
+//         &.fl-col {
+//             display: flex;
+//             flex-direction: column;
 
-            .mg-t {
-                margin-top: auto;
+//             .mg-t {
+//                 margin-top: auto;
 
-                .btn-pri-whi {
-                    background-color: #fff;
-                    border: none;
-                    line-height: 1.5;
-                    text-decoration: none;
-                    color: inherit;
+//                 .btn-pri-whi {
+//                     background-color: #fff;
+//                     border: none;
+//                     line-height: 1.5;
+//                     text-decoration: none;
+//                     color: inherit;
 
-                    &.ban__btn {
-                        display: block;
-                        margin: 0 auto;
-                        width: 15rem;
-                        padding: 5px;
-                    }
+//                     &.ban__btn {
+//                         display: block;
+//                         margin: 0 auto;
+//                         width: 15rem;
+//                         padding: 5px;
+//                     }
 
-                    &::after {
-                        content: "";
-                        width: 0;
-                        top: 0;
-                        height: 100%;
-                        left: 50%;
-                        transform: translateX(-50%);
-                        background-color: #000;
-                    }
+//                     &::after {
+//                         content: "";
+//                         width: 0;
+//                         top: 0;
+//                         height: 100%;
+//                         left: 50%;
+//                         transform: translateX(-50%);
+//                         background-color: #000;
+//                     }
 
-                    &:hover {
-                        color: #fff;
-                        border: none;
-                        box-shadow: 1rem 1rem 3rem rgba(0, 0, 0, 0.4);
-                    }
+//                     &:hover {
+//                         color: #fff;
+//                         border: none;
+//                         box-shadow: 1rem 1rem 3rem rgba(0, 0, 0, 0.4);
+//                     }
 
-                    // &.hov-df {}
+//                     // &.hov-df {}
 
-                }
+//                 }
 
-            }
-        }
-    }
-}
+//             }
+//         }
+//     }
+// }

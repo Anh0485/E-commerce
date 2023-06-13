@@ -1,5 +1,5 @@
 import React from 'react'
-
+import '../scss/Banner.scss'
 const Banner = () => {
     return (
         <div className='main'>
