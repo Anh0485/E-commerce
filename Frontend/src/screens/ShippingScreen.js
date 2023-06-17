@@ -29,36 +29,36 @@ const ShippingScreen = ({ history }) => {
           className="Login col-md-8 col-lg-4 col-11"
           onSubmit={submitHandler}
         >
-          <h6>DELIVERY ADDRESS</h6>
+          <h6>ĐỊA CHỈ VẬN CHUYỂN</h6>
           <input
             type="text"
-            placeholder="Enter address"
+            placeholder="Tên Đường, Số Nhà, Quận/Huyện"
             value={address}
             required
             onChange={(e) => setAddress(e.target.value)}
           />
           <input
             type="text"
-            placeholder="Enter city"
+            placeholder="Thành Phố"
             value={city}
             required
             onChange={(e) => setCity(e.target.value)}
           />
           <input
             type="text"
-            placeholder="Enter postal code"
+            placeholder="Quốc Gia"
             value={postalCode}
             required
             onChange={(e) => setPostalCode(e.target.value)}
           />
           <input
             type="text"
-            placeholder="Enter country"
+            placeholder="Số Điện Thoại"
             value={country}
             required
             onChange={(e) => setCountry(e.target.value)}
           />
-          <button type="submit">Continue</button>
+          <button type="submit">Đến Trang Thanh Toán</button>
         </form>
       </div>
     </>

@@ -13,6 +13,8 @@ import Header from "./../components/Header";
 import Message from "./../components/LoadingError/Error";
 import Toast from "./../components/LoadingError/Toast";
 import { toast } from "react-toastify";
+import "./detailProduct.css";
+
 
 const ToastObjects = {
   pauseOnFocusLoss: false,
@@ -101,28 +103,30 @@ const SingleProduct = ({ history, match }) => {
 
                   <div className="product-count col-lg-7 ">
                     <div className="flex-box d-flex justify-content-between align-items-center">
-                      <h6>Price</h6>
-                      <span>${product.price}</span>
+                      <h6>Giá</h6>
+                      <span>{product.price} VNĐ</span>
                     </div>
                     <div className="flex-box d-flex justify-content-between align-items-center">
-                      <h6>Status</h6>
+                      <h6>Trạng Thái</h6>
                       {product.countInStock > 0 ? (
-                        <span>In Stock</span>
+                        <span>Còn Hàng</span>
                       ) : (
-                        <span>Unavailable</span>
+                        <span>Hết Hàng</span>
                       )}
                     </div>
                     <div className="flex-box d-flex justify-content-between align-items-center">
-                      <h6>Reviews</h6>
-                      <Rating
-                        value={product.rating}
-                        text={`${product.numReviews} reviews`}
-                      />
+                      <h6>SIZE</h6>
+                      <select id="size-select">
+    <option value="38">38</option>
+    <option value="39">39</option>
+    <option value="40">40</option>
+    <option value="41">41</option>
+  </select>
                     </div>
                     {product.countInStock > 0 ? (
                       <>
                         <div className="flex-box d-flex justify-content-between align-items-center">
-                          <h6>Quantity</h6>
+                          <h6>Số Lượng</h6>
                           <select
                             value={qty}
                             onChange={(e) => setQty(e.target.value)}
@@ -140,94 +144,30 @@ const SingleProduct = ({ history, match }) => {
                           onClick={AddToCartHandle}
                           className="round-black-btn"
                         >
-                          Add To Cart
+                          Thêm Vào Giỏ Hàng
                         </button>
                       </>
                     ) : null}
                   </div>
+                  
+                  
+                  <div class="button-container">
+  <button class="custom-button" onClick="showModal()">Thông Tin</button> 
+  <div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2>Modal Title</h2>
+    <p>Đây là nội dung của modal.</p>
+  </div>
+</div>
+  <button class="custom-button">Bảng Size</button>
+  <button class="custom-button">Chính Sách Đổi Trả</button>
+  </div>
                 </div>
               </div>
             </div>
 
-            {/* RATING */}
-            <div className="row my-5">
-              <div className="col-md-6">
-                <h6 className="mb-3">REVIEWS</h6>
-                {product.reviews.length === 0 && (
-                  <Message variant={"alert-info mt-3"}>No Reviews</Message>
-                )}
-                {product.reviews.map((review) => (
-                  <div
-                    key={review._id}
-                    className="mb-5 mb-md-3 bg-light p-3 shadow-sm rounded"
-                  >
-                    <strong>{review.name}</strong>
-                    <Rating value={review.rating} />
-                    <span>{moment(review.creareAt).calendar()}</span>
-                    <div className="alert alert-info mt-3">
-                      {review.comment}
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="col-md-6">
-                <h6>WRITE A CUSTOMER REVIEW</h6>
-                <div className="my-4">
-                  {loadingCreateReview && <Loading />}
-                  {errorCreateReview && (
-                    <Message variant="alert-danger">
-                      {errorCreateReview}
-                    </Message>
-                  )}
-                </div>
-                {userInfo ? (
-                  <form onSubmit={submitHandler}>
-                    <div className="my-4">
-                      <strong>Rating</strong>
-                      <select
-                        value={rating}
-                        onChange={(e) => setRating(e.target.value)}
-                        className="col-12 bg-light p-3 mt-2 border-0 rounded"
-                      >
-                        <option value="">Select...</option>
-                        <option value="1">1 - Poor</option>
-                        <option value="2">2 - Fair</option>
-                        <option value="3">3 - Good</option>
-                        <option value="4">4 - Very Good</option>
-                        <option value="5">5 - Excellent</option>
-                      </select>
-                    </div>
-                    <div className="my-4">
-                      <strong>Comment</strong>
-                      <textarea
-                        row="3"
-                        value={comment}
-                        onChange={(e) => setComment(e.target.value)}
-                        className="col-12 bg-light p-3 mt-2 border-0 rounded"
-                      ></textarea>
-                    </div>
-                    <div className="my-3">
-                      <button
-                        disabled={loadingCreateReview}
-                        className="col-12 bg-black border-0 p-3 rounded text-white"
-                      >
-                        SUBMIT
-                      </button>
-                    </div>
-                  </form>
-                ) : (
-                  <div className="my-3">
-                    <Message variant={"alert-warning"}>
-                      Please{" "}
-                      <Link to="/login">
-                        " <strong>Login</strong> "
-                      </Link>{" "}
-                      to write a review{" "}
-                    </Message>
-                  </div>
-                )}
-              </div>
-            </div>
+
           </>
         )}
       </div>

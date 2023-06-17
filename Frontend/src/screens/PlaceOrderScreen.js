@@ -162,25 +162,25 @@ const PlaceOrderScreen = ({ history }) => {
                   <td>
                     <strong>Products</strong>
                   </td>
-                  <td>${cart.itemsPrice}</td>
+                  <td>{cart.itemsPrice} VNĐ</td>
                 </tr>
                 <tr>
                   <td>
                     <strong>Shipping</strong>
                   </td>
-                  <td>${cart.shippingPrice}</td>
+                  <td>{cart.shippingPrice} VNĐ</td>
                 </tr>
                 <tr>
                   <td>
                     <strong>Tax</strong>
                   </td>
-                  <td>${cart.taxPrice}</td>
+                  <td>{cart.taxPrice} VNĐ</td>
                 </tr>
                 <tr>
                   <td>
                     <strong>Total</strong>
                   </td>
-                  <td>${cart.totalPrice}</td>
+                  <td>{cart.totalPrice} VNĐ</td>
                 </tr>
               </tbody>
             </table>
