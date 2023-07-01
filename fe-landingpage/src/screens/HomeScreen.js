@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../components/Header.js';
 import Banner from '../components/Banner.js';
 import FeaturedProducts from '../components/FeaturedProducts.js';
+import ProductScreen from './ProductScreen.js';
 
 const HomeScreen = () => {
   return (
@@ -9,6 +10,7 @@ const HomeScreen = () => {
       <Header />
       <Banner />
       <FeaturedProducts />
+
     </div>
   )
 }

@@ -1,12 +1,26 @@
 import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { LinkContainer } from 'react-router-bootstrap'
 // import {logo} from 'https://levents.asia/wp-content/uploads/2021/10/logo.png'
 import '../../scss/Header.scss'
-
 import HomeScreen from '../../screens/HomeScreen';
+import { NavDropdown } from 'react-bootstrap';
+import { logout } from '../../redux/actions/userActions.js';
 const HeaderTop = () => {
+    const dispatch = useDispatch()
+
     const [open, setOpen] = useState(false);
     const [OpenFavorite, setOpenFavorite] = useState(false);
 
+
+    const userLogin = useSelector(state => state.userLogin);
+    const { userInfo } = userLogin
+
+
+
+    const LogoutHandler = () => {
+        dispatch(logout())
+    }
 
     const handleClose = () => setOpen(false);
     const handleShow = () => setOpen(true);
@@ -74,10 +88,22 @@ const HeaderTop = () => {
                                     </div>
                                 </div>
                             </div>
+
                             <div className='hd__user pd-lr'>
-                                <a className='user__btn actBtn' href="/login">
-                                    <img src="https://levents.asia/template/assets/images/svg/ic-user.svg" />
-                                </a>
+                                {userInfo
+                                    ? <NavDropdown title={userInfo.name} id="username">
+                                        <LinkContainer to="/profile">
+                                            <NavDropdown.Item>
+                                                Profile
+                                            </NavDropdown.Item>
+                                        </LinkContainer>
+                                        <NavDropdown.Item onClick={LogoutHandler}>Logout</NavDropdown.Item>
+                                    </NavDropdown>
+                                    : <a className='user__btn actBtn' href="/login">
+                                        <img src="https://levents.asia/template/assets/images/svg/ic-user.svg" />
+                                    </a>
+                                }
+
                             </div>
                             <div className='hd__lang pd-lr'>
                                 <div className='lang actPanel'>

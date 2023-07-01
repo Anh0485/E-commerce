@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, redirect } from 'react-router-dom'
-import { login } from '../actions/userActions'
+import { Link, useNavigate, redirect } from 'react-router-dom'
+import { login } from '../redux/actions/userActions'
 import HeaderTop from '../components/Header/HeaderTop'
 import HeaderBot from '../components/Header/HeaderBot'
 import Loader from '../components/Loader';
@@ -21,14 +21,13 @@ const LoginScreen = ({ history }) => {
 
     const location = useLocation()
 
-    const redirect = location.search ? location.search.split('=')[1] : '/'
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (userInfo) {
-            console.log(redirect);
-            // history.push(redirect)
-        }
-    }, [history, userInfo, redirect])
+            navigate("/")
+        }       
+    }, [history, userInfo, navigate])
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -36,6 +35,8 @@ const LoginScreen = ({ history }) => {
         //DISPATCH LOGIN
         dispatch(login(email, password))
     }
+
+    // redirect ? `/register?redirect=${redirect}` : '/register'
     return (
         <div>
             <HeaderTop />
@@ -50,7 +51,7 @@ const LoginScreen = ({ history }) => {
                             <div className='form'>
                                 <div className='form__txt'>
                                     Bạn chưa có tài khoản?
-                                    <Link to={redirect ? `/register?redirect=${redirect}` : '/register'} className='form__link'>Đăng ký</Link>
+                                    <Link to={'/register'} className='form__link'>Đăng ký</Link>
                                     {/* <a href="/register" className='form__link'>Đăng ký</a> */}
                                 </div>
                                 {/* <input type='hidden' id="mona_sort_nonce" name="mona"></input> */}
@@ -72,7 +73,7 @@ const LoginScreen = ({ history }) => {
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
                                 <div className='form__check'>
-                                    <label for="user_remember" className='fl-con'>
+                                    <label htmlFor="user_remember" className='fl-con'>
                                         <input type="checkbox" className='dp-none' name='user_remember' value="yes" id="user_remember" />
                                         {/* <div className='form__cbox'></div> */}
                                         <div className='form__ctxt hov-df'>
