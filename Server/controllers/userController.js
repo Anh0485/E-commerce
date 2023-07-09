@@ -6,52 +6,29 @@ import generateToken from "../utils/generateToken.js";
 //@desc Auth user and get token
 //@route POST /api/users/login
 //@access Public
+
 const authUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
+
+    const user = await User.findOne({ email })
     try {
-        let isExits = await checkEmail(email);
-        if (isExits) {
-            let user = await User.findOne({ email });
-            if (user) {
-                let check = await bcrypt.compareSync(password, user.password);
-                if (check) {
-
-                    generateToken(res, user._id);
-
-                    res.status(200).json({
-                        message: "ok",
-                        _id: user._id,
-                        name: user.name,
-                        isAdmin: user.isAdmin,
-                    })
-
-                } else {
-                    res.status(401).json({ message: "wrong pass" })
-                }
-            } else {
-                res.status(200).json({ message: "user's not found" })
-            }
+        if (user && await user.matchPassword(password)) {
+            res.json({
+                _id: user._id,
+                name: user.name,
+                email: user.email,
+                isAdmin: user.isAdmin,
+                token: generateToken(user._id),
+                createdAt: user.createdAt,
+            })
         } else {
-            res.status(401).json({ message: "Your email isn't exist in your system .Plz try other email" })
+            res.status(401).json({ message: 'Invalid Email or Password' })
         }
+
     } catch (e) {
-        console.log(`Error by:  ${e}`)
+        console.log(`Error by: ${e}`)
     }
 })
-let checkEmail = (email) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let user = await User.findOne({ email });
-            if (user) {
-                resolve(true)
-            } else {
-                resolve(false)
-            }
-        } catch (e) {
-            reject(e)
-        }
-    })
-}
 
 
 //@desc  Register users
@@ -150,28 +127,60 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 //@route GET /api/users
 //@access private/admin
 const getUsers = asyncHandler(async (req, res) => {
-    res.send('get user');
+    const users = await User.find({});
+    res.json(users)
 })
 
-//@desc  Get user by id
+//@desc  Get user by ID
 //@route GET /api/users
 //@access private/admin
 const getUserById = asyncHandler(async (req, res) => {
-    res.send('get user by id');
+    const user = await User.findById(req.params.id).select('-password');
+    if (user) {
+        res.json(user)
+    } else {
+        res.status(404).json({ message: "User's not found" })
+    }
+
 })
 
 //@desc  Delete user 
 //@route DELETE /api/users/:id
 //@access private/admin
 const deleteUser = asyncHandler(async (req, res) => {
-    res.send('delete user');
+    const user = await User.findById(req.params.id)
+    if (user) {
+        await user.deleteOne();
+        res.json({ message: 'User removed' })
+    } else {
+        res.status(404).json({ message: "User's not found" })
+    }
 })
 
 //@desc  Update user 
-//@route DELETE /api/users/:id
+//@route PUT /api/users/:id
 //@access private/admin
 const updateUser = asyncHandler(async (req, res) => {
-    res.send('udpate user');
+    const user = await User.findById(req.params.id);
+
+    if (user) {
+        user.name = req.body.name || user.name;
+        user.email = req.body.email || user.email;
+        user.isAdmin = req.body.isAdmin || user.isAdmin
+
+        const updatedUser = await user.save();
+
+        res.status(200).json({
+            message: "Update successed",
+            id: updatedUser._id,
+            email: updatedUser.email,
+            name: updatedUser.name,
+            isAdmin: updatedUser.isAdmin
+        })
+    } else {
+        res.status(404).json({ message: "User's not found" })
+    }
+    // res.send('udpate user');
 })
 export {
     authUser,

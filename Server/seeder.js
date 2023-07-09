@@ -6,6 +6,7 @@ import User from './Model/userModel.js'
 import Product from "./Model/productModel.js";
 import connectDB from './config/connectDB.js';
 import colors from 'colors'
+import Order from "./Model/orderModel.js";
 dotenv.config();
 
 connectDB();
@@ -14,7 +15,7 @@ const importData = async () => {
     try {
         await Product.deleteMany();
         await User.deleteMany();
-
+        await Order.deleteMany();
         const createdUsers = await User.insertMany(users);
 
         const adminUser = createdUsers[0]._id;
@@ -38,7 +39,7 @@ const destroyData = async () => {
     try {
         await User.deleteMany()
         await Product.deleteMany()
-
+        await Order.deleteMany();
         console.log('Data Destroyed'.green.inverse)
         process.exit()
     } catch (e) {
