@@ -28,7 +28,7 @@ export const lisCategories = () => async (dispatch, getState) => {
     const config = {
       headers: { Authorization: `Bearer ${userInfo.token}` },
     };
-    const { data } = await axios.get(`/api/categories/all`, config);
+    const { data } = await axios.get(`http://localhost:5000/api/categories/all`, config);
     dispatch({ type: CATEGORY_LIST_SUCCESS, payload: data });
   } catch (error) {
     const message =

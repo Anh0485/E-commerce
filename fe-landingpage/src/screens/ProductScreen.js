@@ -6,45 +6,42 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 import Accordion from 'react-bootstrap/Accordion';
 import { listProductDetails } from '../redux/actions/productActions';
-import { useLocation, useParams } from 'react-router-dom';
-import { Container, Col, Image, Row } from 'react-bootstrap'
+import { useLocation, useParams, useNavigate } from 'react-router-dom';
+import { Container, Col, Image, Row, Form } from 'react-bootstrap'
 import InforTshirt from '../components/InforTshirt';
 
-const ProductScreen = ({ match }) => {
+const ProductScreen = ({ history, match }) => {
 
 
 
     const { id } = useParams();
 
-    const [qty, setQty] = useState(1);
     const dispatch = useDispatch();
 
     const productId = (id);
 
     const productDetails = useSelector((state) => state.productDetails);
     const { loading, error, product } = productDetails;
+
+    const navigate = useNavigate()
+
+
     //useEffect loaidng 
     useEffect(() => {
         dispatch(listProductDetails(productId));
     }, [dispatch, productId])
 
+
+
     const AddToCartHandle = () => {
-        alert('AddToCartHandle')
+        navigate(`/cart/${productId}?qty=${qty}`)
     }
 
 
     //Quantity
-    const [quantity, setQuantity] = useState(1);
+    const [qty, setQty] = useState(1);
 
-    const increaseQuantity = () => {
-        setQuantity(quantity + 1);
-    };
 
-    const decreaseQuantity = () => {
-        if (quantity > 0) {
-            setQuantity(quantity - 1);
-        }
-    };
 
     //key and value of material, size
     if (!product || !product.description) {
@@ -56,7 +53,7 @@ const ProductScreen = ({ match }) => {
                 <p>{value}</p>
             </div>
         );
-    });
+    },);
 
     //key and value of object sizeChart
     if (!product || !product.sizeChart) {
@@ -138,10 +135,15 @@ const ProductScreen = ({ match }) => {
                                                 <div className="flex-box d-flex align-items-center dt__item">
                                                     <h6>Số Lượng</h6>
                                                     <div className='flex-box d-flex quantity '>
-
-                                                        <button className='button-upDown' onClick={decreaseQuantity}>-</button>
-                                                        <p className='text-quantity'>{quantity}</p>
-                                                        <button className='button-upDown' onClick={increaseQuantity}>+</button>
+                                                        {/* {qty <= 1 ? (
+                                                            <button className='button-upDown' onClick={decreaseQuantity} disabled>-</button>
+                                                        ) : (
+                                                            <button className='button-upDown' onClick={decreaseQuantity}>-</button>
+                                                        )}
+                                                        <p className='text-quantity'>
+                                                            {qty}
+                                                        </p>
+                                                        <button className='button-upDown' onClick={increaseQuantity}>+</button> */}
                                                     </div>
                                                     {/* <select
                                                         value={qty}
@@ -155,6 +157,20 @@ const ProductScreen = ({ match }) => {
                                                             )
                                                         )}
                                                     </select> */}
+                                                    <Form.Control
+                                                        style={{ width: '40%', margin: '12px' }}
+                                                        as='select'
+                                                        value={qty}
+                                                        onChange={(e) => setQty(e.target.value)}
+                                                    >
+                                                        {[...Array(product.countInStock).keys()].map((x) => (
+                                                            <option key={x + 1} value={x + 1}>
+                                                                {x + 1}
+                                                            </option>
+                                                        ))}
+
+
+                                                    </Form.Control>
                                                 </div>
 
                                                 <button
@@ -193,7 +209,7 @@ const ProductScreen = ({ match }) => {
 
 
 
-                                    <div class="button-container">
+                                    {/* <div class="button-container">
                                         <button class="custom-button" onClick="showModal()">Thông Tin</button>
                                         <div id="modal" class="modal">
                                             <div class="modal-content">
@@ -204,7 +220,7 @@ const ProductScreen = ({ match }) => {
                                         </div>
                                         <button class="custom-button">Bảng Size</button>
                                         <button class="custom-button">Chính Sách Đổi Trả</button>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>

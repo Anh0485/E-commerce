@@ -20,4 +20,13 @@ const getProductById = asyncHandler(async (req, res) => {
     res.status(404).json({ message: 'Product not found' })
 })
 
-export { getProductById, getProducts };
+//@desc Fetch all products
+//@route GET /api/products
+//@access Private/ admin
+const getProductsByAdmin = asyncHandler(async (req, res) => {
+    const products = await Product.find({});
+    res.json(products);
+})
+
+
+export { getProductById, getProducts, getProductsByAdmin };

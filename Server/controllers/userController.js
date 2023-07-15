@@ -116,7 +116,8 @@ const updateUserProfile = asyncHandler(async (req, res) => {
             id: updatedUser._id,
             email: updatedUser.email,
             name: updatedUser.name,
-            isAdmin: updatedUser.isAdmin
+            isAdmin: updatedUser.isAdmin,
+            token: generateToken(updateUser._id)
         })
     } else {
         res.status(404).json({ message: "User's not found" })
@@ -166,6 +167,9 @@ const updateUser = asyncHandler(async (req, res) => {
     if (user) {
         user.name = req.body.name || user.name;
         user.email = req.body.email || user.email;
+        if (req.body.password) {
+            user.password = req.body.password
+        }
         user.isAdmin = req.body.isAdmin || user.isAdmin
 
         const updatedUser = await user.save();
@@ -174,8 +178,10 @@ const updateUser = asyncHandler(async (req, res) => {
             message: "Update successed",
             id: updatedUser._id,
             email: updatedUser.email,
+
             name: updatedUser.name,
-            isAdmin: updatedUser.isAdmin
+            isAdmin: updatedUser.isAdmin,
+            token: generateToken(updateUser._id)
         })
     } else {
         res.status(404).json({ message: "User's not found" })

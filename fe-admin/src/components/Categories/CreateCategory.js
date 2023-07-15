@@ -48,7 +48,7 @@ const CreateCategory = () => {
         ) : (
           <form onSubmit={submitHandler}>
             <div className="mb-4">
-              <label htmlFor="product_name" className="form-label">
+              <label for="product_name" className="form-label">
                 Name
               </label>
               <input

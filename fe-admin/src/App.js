@@ -25,6 +25,8 @@ function App() {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  console.log('user infor', userInfo)
+
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
       dispatch(lisProducts());

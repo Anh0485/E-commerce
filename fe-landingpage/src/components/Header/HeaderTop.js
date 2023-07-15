@@ -6,6 +6,7 @@ import '../../scss/Header.scss'
 import HomeScreen from '../../screens/HomeScreen';
 import { NavDropdown } from 'react-bootstrap';
 import { logout } from '../../redux/actions/userActions.js';
+import { Link } from 'react-router-dom';
 const HeaderTop = () => {
     const dispatch = useDispatch()
 
@@ -81,12 +82,15 @@ const HeaderTop = () => {
                                 </div>
                             </div>
                             <div className='hd__cart pd-lr'>
-                                <div className='cart__btn cartBtn'>
-                                    <img src="https://levents.asia/template/assets/images/svg/ic-cart.svg" />
-                                    <div className='cart__num c-whi f-thin'>
-                                        0
+                                <Link to="/cart">
+                                    <div className='cart__btn cartBtn'>
+                                        <img src="https://levents.asia/template/assets/images/svg/ic-cart.svg" />
+                                        <div className='cart__num c-whi f-thin'>
+                                            0
+                                        </div>
                                     </div>
-                                </div>
+                                </Link>
+
                             </div>
 
                             <div className='hd__user pd-lr'>

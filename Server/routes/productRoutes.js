@@ -3,10 +3,10 @@ const router = express.Router();
 // import products from '../data/products.js';
 import asyncHandler from '../middleware/asyncHandler.js';
 import Product from '../Model/productModel.js';
-import { getProductById, getProducts } from '../controllers/productController.js';
-
+import { getProductById, getProducts, getProductsByAdmin } from '../controllers/productController.js';
+import { protect, admin } from '../middleware/authMiddleware.js';
 //get all product
-router.route('/').get(getProducts);
+router.route('/').get(getProducts).get(protect, admin, getProductsByAdmin);
 
 //get by id
 router.route('/:id').get(getProductById);

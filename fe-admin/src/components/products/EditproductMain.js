@@ -35,7 +35,10 @@ const EditProductMain = (props) => {
   const inputRef = useRef(null);
 
   const productEdit = useSelector((state) => state.productEdit);
+
   const { error, product } = productEdit;
+
+
 
   const productUpdate = useSelector((state) => state.productUpdate);
   const {
@@ -43,6 +46,8 @@ const EditProductMain = (props) => {
     error: errorUpdate,
     success: successProduct,
   } = productUpdate;
+
+  console.log('productUpdate:', productUpdate)
 
   const categoryList = useSelector((state) => state.categoryList);
   const { loading: loadingList, error: errorList, categories } = categoryList;
@@ -59,7 +64,9 @@ const EditProductMain = (props) => {
       dispatch({ type: PRODUCT_UPDATE_RESET });
       toast.success("Product Updated", ToastObjects);
     } else {
-      if (!product.name || product._id !== productId) {
+      console.log('product', product)
+      console.log('productId', productId)
+      if (!product.MainName || product._id !== productId) {
         dispatch(editProduct(productId));
       } else {
         setName(product.name);
