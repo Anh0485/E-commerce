@@ -6,9 +6,9 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 import Accordion from 'react-bootstrap/Accordion';
 import { listProductDetails } from '../redux/actions/productActions';
-import { useLocation, useParams, useNavigate } from 'react-router-dom';
-import { Container, Col, Image, Row, Form } from 'react-bootstrap'
-import InforTshirt from '../components/InforTshirt';
+import { useParams, useNavigate } from 'react-router-dom';
+import { Image, Form } from 'react-bootstrap'
+
 
 const ProductScreen = ({ history, match }) => {
 
@@ -43,29 +43,9 @@ const ProductScreen = ({ history, match }) => {
 
 
 
-    //key and value of material, size
-    if (!product || !product.description) {
-        return <p>Product description is not available.</p>;
-    }
-    const materialAndSizeValues = Object.entries(product.description).map(([key, value]) => {
-        return (
-            <div key={key}>
-                <p>{value}</p>
-            </div>
-        );
-    },);
 
-    //key and value of object sizeChart
-    if (!product || !product.sizeChart) {
-        return <p>Product sizeChart is not available.</p>;
-    }
-    const sizeChart = Object.entries(product.sizeChart).map(([key, value]) => {
-        return (
-            <div key={key}>
-                <p>{value}</p>
-            </div>
-        );
-    });
+
+
     return (
 
         <>
@@ -83,7 +63,7 @@ const ProductScreen = ({ history, match }) => {
                         <div className="row">
                             <div className="col-md-6">
                                 <div className="single-image" style={{ width: "100%" }}>
-                                    <Image src={product.MainImage} fluid />
+                                    <Image src={product.image} fluid />
                                 </div>
                             </div>
                             <div className="col-md-6">
@@ -187,7 +167,7 @@ const ProductScreen = ({ history, match }) => {
                                                 <Accordion.Header>Thông Tin</Accordion.Header>
                                                 <Accordion.Body>
                                                     {/* <p>{product.description.material}</p> */}
-                                                    {materialAndSizeValues}
+                                                    {product.description}
 
                                                 </Accordion.Body>
                                             </Accordion.Item>

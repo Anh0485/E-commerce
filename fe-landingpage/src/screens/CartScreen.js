@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useParams, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom';
 import { Row, Col, ListGroup, Image, Form, Button, Card, Container, ListGroupItem } from 'react-bootstrap'
 import Message from '../components/Message'
 import Header from '../components/Header.js'
 import { addToCart, removeFromCart } from '../redux/actions/cartActions'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../scss/cartScreen.scss'
 const CartScreen = () => {
 
@@ -14,6 +14,8 @@ const CartScreen = () => {
     const productId = (id);
 
     const dispatch = useDispatch();
+
+    const navigate = useNavigate();
 
     const location = useLocation();
 
@@ -31,30 +33,19 @@ const CartScreen = () => {
 
     console.log('type new qty', typeof (newQty))
 
-    const increaseQuantity = (id) => {
-        Number(setNewQty(newQty + 1))
-        console.log('newQtyIn', (setNewQty(newQty + 1)))
-        // dispatch(addToCart(id,))
-        //lỗi
-    };
-
-    const decreaseQuantity = (id) => {
-        dispatch(addToCart(id, Number(setNewQty(newQty - 1))))
-        //lỗi
-        // if (qty > 0) {
-        //     setNewQty(newQty - 1)
-        // }
-    };
-
     //Cart
     const cart = useSelector(state => state.cart)
     const { cartItems } = cart
+
+    console.log('cartItem', cartItems)
+
+    const userLogin = useSelector((state) => state.userLogin)
+    const { userInfo } = userLogin
 
     //RemoveCartHandler
     const removeFromCartHandler = (id) => {
         dispatch(removeFromCart(id))
     }
-
 
 
     useEffect(() => {
@@ -63,8 +54,13 @@ const CartScreen = () => {
         }
     }, [dispatch, productId, qty])
 
-    const checkoutHandler = () => {
-        alert('Thanh toán')
+    const checkoutHandler = (e) => {
+        e.preventDefault();
+        if (!userInfo) {
+            navigate('/login')
+        } else {
+            navigate('/shipping')
+        }
     }
 
     return (

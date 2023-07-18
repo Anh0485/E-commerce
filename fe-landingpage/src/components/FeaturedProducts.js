@@ -14,7 +14,6 @@ const FeaturedProducts = () => {
 
     useEffect(() => {
         dispatch(listProduct());
-        console.log('list-product', products);
     }, [dispatch])
 
 
@@ -27,7 +26,7 @@ const FeaturedProducts = () => {
                     <Col>
                         <Card style={{ border: 'none' }}>
                             <Link to={`/product/${product._id}`}>
-                                <Card.Img src={product.MainImage} />
+                                <Card.Img src={product.image} />
                             </Link>
                             <Card.Body>
                                 <Card.Title style={{ fontSize: '16px', color: '#7f7f7f' }} >{product.MainName}</Card.Title>
