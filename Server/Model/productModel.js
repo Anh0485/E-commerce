@@ -8,13 +8,9 @@ const productSchema = mongoose.Schema({
     },
     name: {
         type: String,
-        require: true
+
     },
     MainName: {
-        type: String,
-        require: true
-    },
-    MainImage: {
         type: String,
         require: true
     },
@@ -25,18 +21,19 @@ const productSchema = mongoose.Schema({
     },
     color: {
         type: Array,
-        require: true,
+
     },
     size: {
         type: Array,
-        require: true
+
     },
     image: {
-        type: Object,
+        type: String,
         require: true,
+
     },
     description: {
-        type: Object,
+        type: String,
         require: true,
     },
     sizeChart: {
@@ -56,9 +53,14 @@ const productSchema = mongoose.Schema({
     catagory: {
         type: String,
         require: true
-    }
+    },
 
-})
+
+},
+    {
+        timestamps: true,
+    }
+)
 
 const Product = mongoose.model('Product', productSchema);
 

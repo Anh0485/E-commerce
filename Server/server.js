@@ -1,4 +1,5 @@
 import express from 'express';
+import path from 'path'
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import connectDB from './config/connectDB.js';
@@ -7,6 +8,7 @@ import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
 import categoryRoutes from './routes/categoryRoutes.js'
+import uploadRoutes from './routes/uploadRoutes.js'
 dotenv.config();
 connectDB();
 const app = express();
@@ -18,8 +20,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
+    // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4000');
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-    // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3001');
 
 
     // Request methods you wish to allow
@@ -46,10 +48,17 @@ app.get('/', (req, res) => {
     res.send('API is running')
 })
 
+
+
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes)
 app.use('/api/categories', categoryRoutes)
+app.use('/api/upload', uploadRoutes)
+
+
+const __dirname = path.resolve()
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 
 const PORT = process.env.PORT || 5000
